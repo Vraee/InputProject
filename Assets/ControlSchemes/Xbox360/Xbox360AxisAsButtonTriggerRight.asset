@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9df2e11ad191223418237d047bb30735, type: 3}
-  m_Name: Xbox360AxisTriggers
+  m_Script: {fileID: 11500000, guid: 61cac3321e0b3ae4091b698cf2f91179, type: 3}
+  m_Name: Xbox360AxisAsButtonTriggerRight
   m_EditorClassIdentifier: 
-  MappableAxisX: TriggerLeftXbox360
-  MappableAxisY: TriggerRightXbox360
+  MappableAxis: TriggesXbox360
+  PressedValue: 1

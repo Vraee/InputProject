@@ -16,17 +16,17 @@ MonoBehaviour:
   RightStickMove: {fileID: 11400000, guid: b6c3872f2a50e0145b06ab782b357f33, type: 2}
   LeftStickPress: {fileID: 11400000, guid: 4d50f7804ca1cbf4781040f9a7d33f51, type: 2}
   RightStickPress: {fileID: 11400000, guid: bdb4cb5a75bad634bbf650d587945c7a, type: 2}
-  DPadUp: {fileID: 0}
-  DPadDown: {fileID: 0}
-  DPadLeft: {fileID: 0}
-  DPadRight: {fileID: 0}
+  DPadUp: {fileID: 11400000, guid: fa9d7a3338d00b64d9b85ebe3a2012c0, type: 2}
+  DPadDown: {fileID: 11400000, guid: ce8388bdd0f21de41a8f59e33fe65754, type: 2}
+  DPadLeft: {fileID: 11400000, guid: ae3ed9f04cef6bd428ffe93fdeb64d20, type: 2}
+  DPadRight: {fileID: 11400000, guid: 1c9befd791a614c498bb18b384f4ff6c, type: 2}
   FaceButtonUp: {fileID: 11400000, guid: 9f9698512d049104a9a8d61f5cebc8c7, type: 2}
   FaceButtonDown: {fileID: 11400000, guid: 8109f4cb2e281994ba751fa1ca3b371a, type: 2}
   FaceButtonLeft: {fileID: 11400000, guid: dc6bd62cfe988ef449ce81aedc1757d8, type: 2}
   FaceButtonRight: {fileID: 11400000, guid: 7b62906ff91b12f48a0167370a400c9d, type: 2}
   BumberLeft: {fileID: 11400000, guid: 0a35a61a091d40641b33d424aa377a14, type: 2}
   BumberRight: {fileID: 11400000, guid: 994eb1b7e80a99844a9d80babdf242c9, type: 2}
-  TriggerLeft: {fileID: 0}
-  TriggerRight: {fileID: 0}
+  TriggerLeft: {fileID: 11400000, guid: 01c9345dfb065744bbfa27218f66c587, type: 2}
+  TriggerRight: {fileID: 11400000, guid: 4557a331e82d3ed44a8802f6403d617a, type: 2}
   Back: {fileID: 11400000, guid: 1f5ea3b5f6d77674c80a05f3197e2e32, type: 2}
   Start: {fileID: 11400000, guid: 2c44345e9a331c24e82e3721220f79ff, type: 2}
