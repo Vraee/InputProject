@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e4ca3e06cfad624097790bb2a9eef1b, type: 3}
-  m_Name: Xbox360
+  m_Name: Xbox360_Default
   m_EditorClassIdentifier: 
   LeftStickMove: {fileID: 11400000, guid: 311844a6dbfd7f74298f02fa8a7c75b7, type: 2}
   RightStickMove: {fileID: 11400000, guid: b6c3872f2a50e0145b06ab782b357f33, type: 2}

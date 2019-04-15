@@ -2,7 +2,4 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class GivenInput : ScriptableObject
-{
-
-}
+public abstract class InputType : ScriptableObject {}

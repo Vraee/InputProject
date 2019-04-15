@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class AxisAsButtonInput : GivenInput
+public class InputAxisAsButton : InputType
 {
     public string MappableAxis;
     [Range(-1, 1)]

@@ -5,22 +5,22 @@ using UnityEngine;
 [CreateAssetMenu]
 public class ControlScheme : ScriptableObject
 {
-    public GivenInput LeftStickMove;
-    public GivenInput RightStickMove;
-    public GivenInput LeftStickPress;
-    public GivenInput RightStickPress;
-    public GivenInput DPadUp;
-    public GivenInput DPadDown;
-    public GivenInput DPadLeft;
-    public GivenInput DPadRight;
-    public GivenInput FaceButtonUp;
-    public GivenInput FaceButtonDown;
-    public GivenInput FaceButtonLeft;
-    public GivenInput FaceButtonRight;
-    public GivenInput BumberLeft;
-    public GivenInput BumberRight;
-    public GivenInput TriggerLeft;
-    public GivenInput TriggerRight;
-    public GivenInput Back;
-    public GivenInput Start;
+    public InputType LeftStickMove;
+    public InputType RightStickMove;
+    public InputType LeftStickPress;
+    public InputType RightStickPress;
+    public InputType DPadUp;
+    public InputType DPadDown;
+    public InputType DPadLeft;
+    public InputType DPadRight;
+    public InputType FaceButtonUp;
+    public InputType FaceButtonDown;
+    public InputType FaceButtonLeft;
+    public InputType FaceButtonRight;
+    public InputType BumberLeft;
+    public InputType BumberRight;
+    public InputType TriggerLeft;
+    public InputType TriggerRight;
+    public InputType Back;
+    public InputType Start;
 }
