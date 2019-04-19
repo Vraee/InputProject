@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e4ca3e06cfad624097790bb2a9eef1b, type: 3}
+  m_Name: PS4
+  m_EditorClassIdentifier: 
+  LeftStickMove: {fileID: 11400000, guid: 6eae98be8edd4774aa9b46c61e9094b8, type: 2}
+  RightStickMove: {fileID: 0}
+  LeftStickPress: {fileID: 11400000, guid: 888204f2b4a3e9c43bf86bb6a74b2b47, type: 2}
+  RightStickPress: {fileID: 11400000, guid: d1dcc84cc90f8024ba7adbac3b16b5a7, type: 2}
+  DPadMove: {fileID: 11400000, guid: a36c99e1f252b764fbf30883bba69b39, type: 2}
+  FaceButtonUp: {fileID: 11400000, guid: d7ec501db8082684ab36fda5c0baabdf, type: 2}
+  FaceButtonDown: {fileID: 11400000, guid: 6029858e78d8f4a468369ff2571a32b5, type: 2}
+  FaceButtonLeft: {fileID: 11400000, guid: 77b63d5ec49aa224ca7f37761e0067df, type: 2}
+  FaceButtonRight: {fileID: 11400000, guid: b4af717c86c1af143b16ef7fcc6664bf, type: 2}
+  BumberLeft: {fileID: 11400000, guid: 1016cccaded92bc47a6d7b0bcfe09d32, type: 2}
+  BumberRight: {fileID: 11400000, guid: a4f888f7759d8e54c9fe4acebae9bdfc, type: 2}
+  TriggerLeft: {fileID: 11400000, guid: 595404aacfeeca24485c10141d4e7d29, type: 2}
+  TriggerRight: {fileID: 11400000, guid: a57dcc9df0334f44facd095af8a7a255, type: 2}
+  Back: {fileID: 11400000, guid: 0a7a25d7179bf81458ab7b9e381f07cc, type: 2}
+  Start: {fileID: 11400000, guid: 35faebe16c202dd459ce6ef256e5f5a5, type: 2}

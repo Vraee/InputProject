@@ -1,74 +1,63 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class InputReader : MonoBehaviour
 {
     // TODO: delet dis
-    private string _player = "P1";
+    /*private string _player = "P1";
     [SerializeField]
     private ControlScheme _controller;
-    private List<InputType> _inputs = new List<InputType>();
+    private List<InputType> _inputs = new List<InputType>();*/
     //
-
-    private void Awake() {
-        _inputs.Add(_controller.LeftStickMove);
-        _inputs.Add(_controller.RightStickMove);
-        _inputs.Add(_controller.LeftStickPress);
-        _inputs.Add(_controller.RightStickPress);
-        _inputs.Add(_controller.DPadUp);
-        _inputs.Add(_controller.DPadDown);
-        _inputs.Add(_controller.DPadLeft);
-        _inputs.Add(_controller.DPadRight);
-        _inputs.Add(_controller.FaceButtonUp);
-        _inputs.Add(_controller.FaceButtonDown);
-        _inputs.Add(_controller.FaceButtonLeft);
-        _inputs.Add(_controller.FaceButtonRight);
-        _inputs.Add(_controller.BumberLeft);
-        _inputs.Add(_controller.BumberRight);
-        _inputs.Add(_controller.TriggerLeft);
-        _inputs.Add(_controller.TriggerRight);
-        _inputs.Add(_controller.Back);
-        _inputs.Add(_controller.Start);
-    }
 
     private void Update() {
         CheckForInput();
     }
 
     private void CheckForInput() {
-        foreach (InputType input in _inputs) {
-            switch (input) {
-                case InputAxisAsButton axisAsButton:
-                    CheckForAxisAsButtonInput(input as InputAxisAsButton);
-                    break;
-                case InputAxis axis:
-                    CheckForAxisInput(input as InputAxis);
-                    break;
-                case InputButton button:
-                    CheckForButtonInput(input as InputButton);
-                    break;
+        if (PlayerDetector.PlayerControllers != null) {
+            int i = 0;
+            foreach (KeyValuePair<string, List<InputType>> playerController in PlayerDetector.PlayerControllers) {
+                string controller = PlayerDetector.Controllers[i];
+                i++;
+                foreach (InputType input in playerController.Value) {
+                    switch (input) {
+                        case InputAxisAsButton axisAsButton:
+                            CheckForAxisAsButtonInput(input as InputAxisAsButton, playerController.Key);
+                            break;
+                        case InputAxis axis:
+                            CheckForAxisInput(input as InputAxis, playerController.Key);
+                            break;
+                        case InputButton button:
+                            CheckForButtonInput(input as InputButton, playerController.Key, controller);
+                            break;
+                    }
+                }
             }
         }
     }
 
-    private void CheckForAxisAsButtonInput(InputAxisAsButton input) {
-        if (Input.GetAxisRaw(input.MappableAxis + _player) == input.PressedValue) {
-            Debug.Log(input.name + " Axis as button input read");
+    private void CheckForAxisAsButtonInput(InputAxisAsButton input, string player) {
+        if (Input.GetAxisRaw(input.MappableAxis + player) == input.PressedValue) {
+            Debug.Log("PLAYER " + player + " " + input.name + " Axis as button input read");
             // TODO: Trigger event
         }
     }
 
-    private void CheckForAxisInput(InputAxis input) {
-        Vector2 axisInput = new Vector2(Input.GetAxisRaw(input.MappableAxisX + _player), Input.GetAxisRaw(input.MappableAxisY + _player)).normalized;
+    private void CheckForAxisInput(InputAxis input, string player) {
+        Vector2 axisInput = new Vector2(Input.GetAxisRaw(input.MappableAxisX + player), Input.GetAxisRaw(input.MappableAxisY + player));
         if (axisInput != Vector2.zero) {
-            Debug.Log(input.name + " Axis input read");
+            axisInput.Normalize();
+            Debug.Log("PLAYER " + player + " " + input.name + " Axis input read. AxisX: " + input.MappableAxisX + player + " Axis Y: " + input.MappableAxisY + player);
         }
     }
 
-    private void CheckForButtonInput(InputButton input) {
-        if (Input.GetKeyDown(input.MappableButton)) {
-            Debug.Log(input.name + " Button input read");
+    private void CheckForButtonInput(InputButton input, string player, string controller) {
+        if (Input.GetKeyDown(controller + "button " + input.ButtonNo)) {
+            Debug.Log("PLAYER " + player + " " + input.name + " Button input read");
             // TODO: Trigger event
         }
     }

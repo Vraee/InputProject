@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c72f28edf052147b07bd08e81caa8e, type: 3}
   m_Name: Xbox360ButtonBack
   m_EditorClassIdentifier: 
-  MappableButton: 336
+  ButtonNo: 6

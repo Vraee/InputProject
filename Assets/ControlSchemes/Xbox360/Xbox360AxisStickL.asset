@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9df2e11ad191223418237d047bb30735, type: 3}
   m_Name: Xbox360AxisStickL
   m_EditorClassIdentifier: 
-  MappableAxisX: VerticalXbox360
-  MappableAxisY: HorizontalXbox360
+  MappableAxisX: LStickXXbox360
+  MappableAxisY: LStickYXbox360

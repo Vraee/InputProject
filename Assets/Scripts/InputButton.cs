@@ -5,5 +5,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class InputButton : InputType
 {
-    public KeyCode MappableButton;
+    //public KeyCode MappableButton;
+    [Range(0, 19)]
+    public int ButtonNo = 0;
 }

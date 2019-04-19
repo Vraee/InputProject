@@ -9,10 +9,7 @@ public class ControlScheme : ScriptableObject
     public InputType RightStickMove;
     public InputType LeftStickPress;
     public InputType RightStickPress;
-    public InputType DPadUp;
-    public InputType DPadDown;
-    public InputType DPadLeft;
-    public InputType DPadRight;
+    public InputType DPadMove;
     public InputType FaceButtonUp;
     public InputType FaceButtonDown;
     public InputType FaceButtonLeft;

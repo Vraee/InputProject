@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02c72f28edf052147b07bd08e81caa8e, type: 3}
-  m_Name: Xbox360ButtonLStick
+  m_Script: {fileID: 11500000, guid: 9df2e11ad191223418237d047bb30735, type: 3}
+  m_Name: PS4AxisStickL
   m_EditorClassIdentifier: 
-  ButtonNo: 8
+  MappableAxisX: LStickXPS4
+  MappableAxisY: LStickYPS4

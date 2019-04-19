@@ -204,6 +204,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1743278262}
   - component: {fileID: 1743278261}
+  - component: {fileID: 1743278263}
+  - component: {fileID: 1743278264}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -223,8 +225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a98aa1b2c25ab0c43aa895c2f01d84d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controller: {fileID: 11400000, guid: c827a997cb3a5414c9efb0e7f1ff9339, type: 2}
-  _buttonTapTime: 0.1
 --- !u!4 &1743278262
 Transform:
   m_ObjectHideFlags: 0
@@ -239,3 +239,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1743278263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743278260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd7450ace3f81f7458e647bec7ab39af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _xbox360Controller: {fileID: 11400000, guid: c827a997cb3a5414c9efb0e7f1ff9339, type: 2}
+  _ps4Controller: {fileID: 11400000, guid: 7f13edeb2474fab47abe128f8e57611f, type: 2}
+--- !u!114 &1743278264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743278260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9919ffbc2e1966e44aa9aa7a25247b21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

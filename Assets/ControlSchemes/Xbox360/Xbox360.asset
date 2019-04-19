@@ -10,16 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e4ca3e06cfad624097790bb2a9eef1b, type: 3}
-  m_Name: Xbox360_Default
+  m_Name: Xbox360
   m_EditorClassIdentifier: 
   LeftStickMove: {fileID: 11400000, guid: 311844a6dbfd7f74298f02fa8a7c75b7, type: 2}
-  RightStickMove: {fileID: 11400000, guid: b6c3872f2a50e0145b06ab782b357f33, type: 2}
+  RightStickMove: {fileID: 0}
   LeftStickPress: {fileID: 11400000, guid: 4d50f7804ca1cbf4781040f9a7d33f51, type: 2}
   RightStickPress: {fileID: 11400000, guid: bdb4cb5a75bad634bbf650d587945c7a, type: 2}
-  DPadUp: {fileID: 11400000, guid: fa9d7a3338d00b64d9b85ebe3a2012c0, type: 2}
-  DPadDown: {fileID: 11400000, guid: ce8388bdd0f21de41a8f59e33fe65754, type: 2}
-  DPadLeft: {fileID: 11400000, guid: ae3ed9f04cef6bd428ffe93fdeb64d20, type: 2}
-  DPadRight: {fileID: 11400000, guid: 1c9befd791a614c498bb18b384f4ff6c, type: 2}
+  DPadMove: {fileID: 11400000, guid: 3986ea4efe0b4064bbcf651e0b1b44ec, type: 2}
   FaceButtonUp: {fileID: 11400000, guid: 9f9698512d049104a9a8d61f5cebc8c7, type: 2}
   FaceButtonDown: {fileID: 11400000, guid: 8109f4cb2e281994ba751fa1ca3b371a, type: 2}
   FaceButtonLeft: {fileID: 11400000, guid: dc6bd62cfe988ef449ce81aedc1757d8, type: 2}

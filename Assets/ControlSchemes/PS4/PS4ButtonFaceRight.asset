@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02c72f28edf052147b07bd08e81caa8e, type: 3}
-  m_Name: Xbox360ButtonLStick
+  m_Name: PS4ButtonFaceRight
   m_EditorClassIdentifier: 
-  ButtonNo: 8
+  ButtonNo: 2
