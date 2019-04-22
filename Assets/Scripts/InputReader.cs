@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class InputReader : MonoBehaviour
 {
-    // TODO: delet dis
-    /*private string _player = "P1";
-    [SerializeField]
-    private ControlScheme _controller;
-    private List<InputType> _inputs = new List<InputType>();*/
-    //
-
     private void Update() {
         CheckForInput();
     }
@@ -41,7 +32,7 @@ public class InputReader : MonoBehaviour
     }
 
     private void CheckForAxisAsButtonInput(InputAxisAsButton input, string player) {
-        if (Input.GetAxisRaw(input.MappableAxis + player) == input.PressedValue) {
+        if (Input.GetAxisRaw(input.MappableAxis + player) == input.PressedValue) { // TODO: change axis names to joystick numbers instead of player numbers
             Debug.Log("PLAYER " + player + " " + input.name + " Axis as button input read");
             // TODO: Trigger event
         }
@@ -57,7 +48,7 @@ public class InputReader : MonoBehaviour
 
     private void CheckForButtonInput(InputButton input, string player, string controller) {
         if (Input.GetKeyDown(controller + "button " + input.ButtonNo)) {
-            Debug.Log("PLAYER " + player + " " + input.name + " Button input read");
+            Debug.Log("PLAYER " + player + " controller " + controller + " " + input.name + " Button input read");
             // TODO: Trigger event
         }
     }

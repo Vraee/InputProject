@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerDetector : MonoBehaviour
 {
     // TODO: rethink visibility
     private string[] _players;
-    public string[] Players { get { return _players; } }
+    public string[] Players { get { return _players; } } // TODO: is this needed?
 
     private static string[] _controllers;
     public static string[] Controllers { get { return _controllers; } }
@@ -23,20 +24,40 @@ public class PlayerDetector : MonoBehaviour
 
         string[] controllers = Input.GetJoystickNames();
         DetectPlayers(controllers);
-        DetectControllerTypes(controllers);
+        //DetectControllerTypes(controllers);
     }
 
     private void DetectPlayers(string[] controllers) {
-        _players = new string[controllers.Length];
-        _controllers = new string[controllers.Length];
+        int playerAmount = controllers.Count(c => !string.IsNullOrWhiteSpace(c));
+
+        _players = new string[playerAmount];
+        _controllers = new string[playerAmount];
+
+        int playerIndex = 0;
 
         for (int i = 0; i < controllers.Length; i++) {
-            _players[i] = "P" + (i + 1);
-            _controllers[i] = "joystick " + (i + 1) + " ";
+            if (!string.IsNullOrWhiteSpace(controllers[i])) {
+                _players[playerIndex] = "P" + (playerIndex + 1);
+                _controllers[playerIndex] = "joystick " + (i + 1) + " ";
+                DetectControllerType(controllers[i], _players[playerIndex]);
+                playerIndex++;
+            }
         }
     }
 
-    private void DetectControllerTypes(string[] controllers) {
+    private void DetectControllerType(string controller, string player) {
+        switch (controller) {
+            case "Wireless Controller":
+                _playerControllers.Add(player, _mapper.PS4Inputs);
+                break;
+            case "Controller (XBOX 360 For Windows)":
+            default:
+                _playerControllers.Add(player, _mapper.Xbox360Inputs);
+                break;
+        }
+    }
+
+    /*private void DetectControllerTypes(string[] controllers) {
         for (int i = 0; i < controllers.Length; i++) {
             Debug.Log(controllers[i]);
             switch (controllers[i]) {
@@ -44,11 +65,11 @@ public class PlayerDetector : MonoBehaviour
                     _playerControllers.Add(_players[i], _mapper.PS4Inputs);
                     break;
                 case "Controller (XBOX 360 For Windows)":
-                //default:
+                default:
                     _playerControllers.Add(_players[i], _mapper.Xbox360Inputs);
                     break;
             }
         }
-    }
+    }*/
     //
 }
