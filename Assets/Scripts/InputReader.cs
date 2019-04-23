@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -48,7 +49,8 @@ public class InputReader : MonoBehaviour
 
     private void CheckForButtonInput(InputButton input, string player, string controller) {
         if (Input.GetKeyDown(controller + "button " + input.ButtonNo)) {
-            Debug.Log("PLAYER " + player + " controller " + controller + " " + input.name + " Button input read");
+            Debug.Log(String.Format("PLAYER {0} controller {1} {2} button input read", player, controller, input.name));
+            //Debug.Log("PLAYER " + player + " controller " + controller + " " + input.name + " Button input read");
             // TODO: Trigger event
         }
     }
