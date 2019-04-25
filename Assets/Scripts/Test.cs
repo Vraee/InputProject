@@ -78,6 +78,6 @@ public class Test : MonoBehaviour
     }
 
     private void DebugInput(string input) {
-        Debug.Log(input);
+        MyDebugger.FormatDebug(input);
     }
 }

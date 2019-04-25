@@ -5,15 +5,6 @@ using UnityEngine;
 
 public class InputAxisDefiner : MonoBehaviour
 {
-    private static SerializedObject _inputManager;
-    public static SerializedObject InputManager {
-        get {
-            if (_inputManager == null)
-                _inputManager = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/InputManager.asset")[0]);
-            return _inputManager;
-        }
-    }
-
     public enum AxisType {
         KeyOrMouseButton = 0,
         MouseMovement = 1,
@@ -39,9 +30,10 @@ public class InputAxisDefiner : MonoBehaviour
     }
 
     public static void AddNewAxis(InputAxisData axisData) {
-        SerializedProperty allAxesProperty = InputManager.FindProperty("m_Axes");
+        SerializedObject _inputManager = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/InputManager.asset")[0]);
+        SerializedProperty allAxesProperty = _inputManager.FindProperty("m_Axes");
         allAxesProperty.arraySize++;
-        InputManager.ApplyModifiedProperties();
+        _inputManager.ApplyModifiedProperties();
 
         SerializedProperty newAxisProperty = allAxesProperty.GetArrayElementAtIndex(allAxesProperty.arraySize - 1);
 
@@ -60,7 +52,11 @@ public class InputAxisDefiner : MonoBehaviour
         GetChildProperty(newAxisProperty, "type").intValue = (int) axisData.Type;
         GetChildProperty(newAxisProperty, "axis").intValue = axisData.Axis;
         GetChildProperty(newAxisProperty, "joyNum").intValue = axisData.JoyNum;
-        InputManager.ApplyModifiedProperties();
+        _inputManager.ApplyModifiedProperties();
+    }
+
+    public static void UpdateAxis() {
+        //TODO: this
     }
 
     private static SerializedProperty GetChildProperty(SerializedProperty axis, string name) {

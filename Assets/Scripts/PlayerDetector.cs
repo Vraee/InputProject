@@ -9,8 +9,8 @@ public class PlayerDetector : MonoBehaviour
     private string[] _players;
     public string[] Players { get { return _players; } } // TODO: is this needed?
 
-    private static string[] _controllers;
-    public static string[] Controllers { get { return _controllers; } }
+    private static int[] _controllers;
+    public static int[] Controllers { get { return _controllers; } }
 
     private static Dictionary<string, List<InputType>> _playerControllers = new Dictionary<string, List<InputType>>();
     public static Dictionary<string, List<InputType>> PlayerControllers { get { return _playerControllers; } }
@@ -24,21 +24,20 @@ public class PlayerDetector : MonoBehaviour
 
         string[] controllers = Input.GetJoystickNames();
         DetectPlayers(controllers);
-        //DetectControllerTypes(controllers);
     }
 
     private void DetectPlayers(string[] controllers) {
         int playerAmount = controllers.Count(c => !string.IsNullOrWhiteSpace(c));
 
         _players = new string[playerAmount];
-        _controllers = new string[playerAmount];
+        _controllers = new int[playerAmount];
 
         int playerIndex = 0;
 
         for (int i = 0; i < controllers.Length; i++) {
             if (!string.IsNullOrWhiteSpace(controllers[i])) {
                 _players[playerIndex] = "P" + (playerIndex + 1);
-                _controllers[playerIndex] = "joystick " + (i + 1) + " ";
+                _controllers[playerIndex] = i + 1;
                 DetectControllerType(controllers[i], _players[playerIndex]);
                 playerIndex++;
             }
@@ -56,20 +55,5 @@ public class PlayerDetector : MonoBehaviour
                 break;
         }
     }
-
-    /*private void DetectControllerTypes(string[] controllers) {
-        for (int i = 0; i < controllers.Length; i++) {
-            Debug.Log(controllers[i]);
-            switch (controllers[i]) {
-                case "Wireless Controller":
-                    _playerControllers.Add(_players[i], _mapper.PS4Inputs);
-                    break;
-                case "Controller (XBOX 360 For Windows)":
-                default:
-                    _playerControllers.Add(_players[i], _mapper.Xbox360Inputs);
-                    break;
-            }
-        }
-    }*/
     //
 }
