@@ -1,16 +1,10 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
 public class InputAxisDefiner : MonoBehaviour
 {
-    public enum AxisType {
-        KeyOrMouseButton = 0,
-        MouseMovement = 1,
-        JoystickAxis = 2
-    };
-
     public struct InputAxisData {
         public string Name;
         public string DescriptiveName;
@@ -24,47 +18,103 @@ public class InputAxisDefiner : MonoBehaviour
         public float Sensitivity;
         public bool Snap;
         public bool Invert;
-        public AxisType Type;
         public int Axis;
         public int JoyNum;
     }
 
     public static void AddNewAxis(InputAxisData axisData) {
-        SerializedObject _inputManager = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/InputManager.asset")[0]);
-        SerializedProperty allAxesProperty = _inputManager.FindProperty("m_Axes");
+        SerializedObject inputManager = LoadInputManager();
+        SerializedProperty allAxesProperty = GetAllAxes(inputManager);
         allAxesProperty.arraySize++;
-        _inputManager.ApplyModifiedProperties();
+        inputManager.ApplyModifiedProperties();
 
-        SerializedProperty newAxisProperty = allAxesProperty.GetArrayElementAtIndex(allAxesProperty.arraySize - 1);
+        int lastIndex = GetAxesAmount(inputManager) - 1;
 
-        GetChildProperty(newAxisProperty, "m_Name").stringValue = axisData.Name;
-        GetChildProperty(newAxisProperty, "descriptiveName").stringValue = axisData.DescriptiveName;
-        GetChildProperty(newAxisProperty, "descriptiveNegativeName").stringValue = axisData.DescriptiveNegativeName;
-        GetChildProperty(newAxisProperty, "negativeButton").stringValue = axisData.NegativeButton;
-        GetChildProperty(newAxisProperty, "positiveButton").stringValue = axisData.PositiveButton;
-        GetChildProperty(newAxisProperty, "altNegativeButton").stringValue = axisData.AltNegativeButton;
-        GetChildProperty(newAxisProperty, "altPositiveButton").stringValue = axisData.AltPositiveButton;
-        GetChildProperty(newAxisProperty, "gravity").floatValue = axisData.Gravity;
-        GetChildProperty(newAxisProperty, "dead").floatValue = axisData.Dead;
-        GetChildProperty(newAxisProperty, "sensitivity").floatValue = axisData.Sensitivity;
-        GetChildProperty(newAxisProperty, "snap").boolValue = axisData.Snap;
-        GetChildProperty(newAxisProperty, "invert").boolValue = axisData.Invert;
-        GetChildProperty(newAxisProperty, "type").intValue = (int) axisData.Type;
-        GetChildProperty(newAxisProperty, "axis").intValue = axisData.Axis;
-        GetChildProperty(newAxisProperty, "joyNum").intValue = axisData.JoyNum;
-        _inputManager.ApplyModifiedProperties();
+        EditAxisData(inputManager, lastIndex, axisData);
     }
 
-    public static void UpdateAxis() {
-        //TODO: this
+    public static void EditAxis(string baseName, InputAxisData axisData) {
+        SerializedObject inputManager = LoadInputManager();
+
+        // TODO: get all indexes to edit based on baseName, move this to for loop
+        EditAxisData(inputManager, 1000, axisData);
     }
 
-    private static SerializedProperty GetChildProperty(SerializedProperty axis, string name) {
-        SerializedProperty child = axis.Copy();
-        child.Next(true);
-        do {
-            if (child.name == name) return child;
-        } while (child.Next(false));
-        return null;
+    public static void DeteleAxis(string axisToDelete) {
+        SerializedObject inputManager = LoadInputManager();
+        SerializedProperty allAxesProperty = GetAllAxes(inputManager);
+        int axesAmount = GetAxesAmount(inputManager);
+
+        for (int i = 0; i < axesAmount; i++) {
+            string axisName = FindAxisProperty(LoadInputManager(), "m_Name", i).stringValue;
+            if (axisName.Contains(axisToDelete) || axisName == axisToDelete) {
+                // TODO: delete axis
+                // also better checks that unintented axes don't get deleted
+            }
+        }
+    }
+
+    public static List<string> GetUniqueAxisNames() {
+        SerializedObject inputManager = LoadInputManager();
+        List<string> axesNames = new List<string>();
+        int axesAmount = GetAxesAmount(inputManager);
+
+        for (int i = 0; i < axesAmount; i++) {
+            string axisName = FindAxisProperty(inputManager, "m_Name", i).stringValue;
+            int joyNum = FindAxisProperty(inputManager, "joyNum", i).intValue;
+
+            if (axisName.EndsWith("Joy" + joyNum)) { // TODO: Better way for checking this?
+                axisName = axisName.Split(new string[] { "Joy" }, StringSplitOptions.None)[0];
+            }
+
+            if (!axesNames.Contains(axisName))
+                axesNames.Add(axisName);
+        }
+
+        return axesNames;
+    }
+
+    private static void EditAxisData(SerializedObject inputManager, int index, InputAxisData axisData) {
+        FindAxisProperty(inputManager, "m_Name", index).stringValue = axisData.Name;
+        FindAxisProperty(inputManager, "descriptiveName", index).stringValue = axisData.DescriptiveName;
+        FindAxisProperty(inputManager, "descriptiveNegativeName", index).stringValue = axisData.DescriptiveNegativeName;
+        FindAxisProperty(inputManager, "negativeButton", index).stringValue = axisData.NegativeButton;
+        FindAxisProperty(inputManager, "positiveButton", index).stringValue = axisData.PositiveButton;
+        FindAxisProperty(inputManager, "altNegativeButton", index).stringValue = axisData.AltNegativeButton;
+        FindAxisProperty(inputManager, "altPositiveButton", index).stringValue = axisData.AltPositiveButton;
+        FindAxisProperty(inputManager, "gravity", index).floatValue = axisData.Gravity;
+        FindAxisProperty(inputManager, "dead", index).floatValue = axisData.Dead;
+        FindAxisProperty(inputManager, "sensitivity", index).floatValue = axisData.Sensitivity;
+        FindAxisProperty(inputManager, "snap", index).boolValue = axisData.Snap;
+        FindAxisProperty(inputManager, "invert", index).boolValue = axisData.Invert;
+        FindAxisProperty(inputManager, "type", index).intValue = 2;
+        FindAxisProperty(inputManager, "axis", index).intValue = axisData.Axis;
+        if (axisData.JoyNum != -1)
+            FindAxisProperty(inputManager, "joyNum", index).intValue = axisData.JoyNum;
+        inputManager.ApplyModifiedProperties();
+    }
+
+    // Reloaded everytime, since some changes might not otherwise be permanent; since this is an
+    // editor script, it shouldn't matter
+    private static SerializedObject LoadInputManager() {
+        return new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/InputManager.asset")[0]);
+    }
+
+    private static int GetAxesAmount(SerializedObject inputManager) {
+        return GetAllAxes(inputManager).arraySize;
+    }
+
+    private static SerializedProperty GetAllAxes(SerializedObject inputManager) {
+        return inputManager.FindProperty("m_Axes");
+    }
+
+    private static SerializedProperty FindAxis(SerializedObject inputManager, int index) {
+        SerializedProperty axis = inputManager.FindProperty("m_Axes.Array.data[" + index + "]");
+        return axis;
+    }
+
+    private static SerializedProperty FindAxisProperty(SerializedObject inputManager, string propertyName, int index) {
+        SerializedProperty child = inputManager.FindProperty("m_Axes.Array.data[" + index + "]." + propertyName);
+        return child;
     }
 }
